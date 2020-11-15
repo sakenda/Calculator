@@ -32,6 +32,7 @@ namespace Calculator.ViewModel
 
         public void RemoveOperandChar()
         {
+            if (Operand.Length > 0)
             Operand = Operand.Remove(Operand.Length - 1);
         }
 
@@ -80,6 +81,8 @@ namespace Calculator.ViewModel
                 result = double.Parse(item);
 
             }
+
+            calcHistory.Clear();
 
             void CheckOperator(string op)
             {
