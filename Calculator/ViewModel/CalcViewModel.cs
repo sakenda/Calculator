@@ -6,9 +6,12 @@ namespace Calculator.ViewModel
 {
     public class CalcViewModel : INotifyPropertyChanged
     {
+        private delegate double Calc(double a, double b);
+        private string _Operand = "";
+        private string _FullCalc = "";
+
         public ObservableCollection<string> calcHistory { get; set; } = new ObservableCollection<string>();
 
-        private string _Operand = "";
         public string Operand
         {
             get => _Operand;
@@ -19,7 +22,15 @@ namespace Calculator.ViewModel
             }
         }
 
-        Mathematics mathematics = new Mathematics();
+        public string FullCalc
+        {
+            get { return _FullCalc; }
+            set 
+            { 
+                _FullCalc = value;
+                OnPropertyChanged(nameof(FullCalc));
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -28,29 +39,26 @@ namespace Calculator.ViewModel
         {
             calcHistory.Clear();
             Operand = "";
+            FullCalc = "";
         }
 
         public void RemoveOperandChar()
         {
             if (Operand.Length > 0)
-            Operand = Operand.Remove(Operand.Length - 1);
+            {
+                Operand = Operand.Remove(Operand.Length - 1);
+            }
+
+            FullCalc = FullCalc.Remove(FullCalc.Length - 1);
         }
 
         public void AddOperandChar(char value)
         {
             Operand += value;
+            FullCalc += value;
         }
 
         public void AddOperator(char op)
-        {
-            calcHistory.Add(Operand);
-            Operand = "";
-            calcHistory.Add(op.ToString());
-        }
-
-        delegate double Calc(double a, double b);
-
-        public void GetResult()
         {
             if (!string.IsNullOrEmpty(Operand))
             {
@@ -58,18 +66,35 @@ namespace Calculator.ViewModel
                 Operand = "";
             }
 
+            calcHistory.Add(op.ToString());
+            FullCalc += $" {op} ";
+        }
+
+        public void GetResult()
+        {
+            Mathematics mathematics = new Mathematics();
+            Calc del = null;
             double result = 0.0;
             bool nextToOperate = false;
 
-            Calc del = null;
+            if (!string.IsNullOrEmpty(Operand))
+            {
+                calcHistory.Add(Operand);
+                Operand = "";
+            }
 
             foreach (var item in calcHistory)
             {
                 if (item == "+" || item == "-" || item == "*" || item == "/")
                 {
-                    CheckOperator(item);
+                    nextToOperate = true;
+                    if (item == "+") del = mathematics.Add;
+                    else if (item == "-") del = mathematics.Subtract;
+                    else if (item == "*") del = mathematics.Multiply;
+                    else if (item == "/") del = mathematics.Divide;
                     continue;
                 }
+
                 if (nextToOperate)
                 {
                     if (del != null) result = del(result, double.Parse(item));
@@ -79,19 +104,14 @@ namespace Calculator.ViewModel
                 }
 
                 result = double.Parse(item);
-
             }
 
-            calcHistory.Clear();
-
-            void CheckOperator(string op)
+            if (calcHistory.Count > 1)
             {
-                nextToOperate = true;
-                if (op == "+") del = mathematics.Add;
-                if (op == "-") del = mathematics.Subtract;
-                if (op == "*") del = mathematics.Multiply;
-                if (op == "/") del = mathematics.Divide;
+                calcHistory.Clear();
+                FullCalc = result.ToString();
             }
+
         }
     }
 }

@@ -6,17 +6,34 @@
         xmlns:local="clr-namespace:Calculator"
         mc:Ignorable="d"
         Title="MainWindow"
-        Height="600" Width="500"
-        MinHeight="600" MinWidth="500"
+        Height="600" Width="350"
+        MinHeight="600" MinWidth="350"
         WindowStartupLocation="CenterScreen"
         FontFamily="Bahnschrift"
-        Name="_Window">
+        Name="_Window"
+        Background="#313131">
     <Window.Resources>
-        <Style TargetType="Button">
-            <Setter Property="Background" Value="Transparent"/>
+        <Style TargetType="Button" x:Key="NumericKey">
+
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Style.Resources>
+
             <Setter Property="FontWeight" Value="Normal"/>
             <Setter Property="FontSize" Value="28"/>
             <Setter Property="Margin" Value="5"/>
+            <Setter Property="Background" Value="Transparent"/>
+
+            <Setter Property="Foreground">
+                <Setter.Value>
+                    <LinearGradientBrush>
+                        <GradientStop Color="White" Offset="0"/>
+                        <GradientStop Color="Gray" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
 
             <Setter Property="Template">
                 <Setter.Value>
@@ -27,12 +44,60 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="LightGray"/>
+                    <Setter Property="Background" Value="#328D95"/>
+                    <Setter Property="BorderBrush" Value="White"/>
+                    <Setter Property="BorderThickness" Value="1"/>
                 </Trigger>
                 <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="Gray"/>
+                    <Setter Property="Background" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+
+        </Style>
+        
+        <Style TargetType="Button" x:Key="FunctionalKey">
+            
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Style.Resources>
+            
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Background" Value="#4A4A4A"/>
+            
+            <Setter Property="Foreground">
+                <Setter.Value>
+                    <LinearGradientBrush>
+                        <GradientStop Color="White" Offset="0"/>
+                        <GradientStop Color="Gray" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#328D95"/>
+                    <Setter Property="BorderBrush" Value="White"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="White"/>
                 </Trigger>
             </Style.Triggers>
 
@@ -43,78 +108,69 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width=".5*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
 
-        <Border Background="DarkGray" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2">
-            <Border.Effect>
-                <DropShadowEffect ShadowDepth="5" Direction="330" Color="Black" Opacity="0.5" BlurRadius="5"/>
-            </Border.Effect>
-        </Border>
-
-        <UniformGrid Columns="3" Rows="4"
-                     Grid.Column="1" Grid.Row="2">
-            <Button Name="btn1" Click="btn1_Click">1</Button>
-            <Button Name="btn2" Click="btn2_Click">2</Button>
-            <Button Name="btn3" Click="btn3_Click">3</Button>
-            <Button Name="btn4" Click="btn4_Click">4</Button>
-            <Button Name="btn5" Click="btn5_Click">5</Button>
-            <Button Name="btn6" Click="btn6_Click">6</Button>
-            <Button Name="btn7" Click="btn7_Click">7</Button>
-            <Button Name="btn8" Click="btn8_Click">8</Button>
-            <Button Name="btn9" Click="btn9_Click">9</Button>
-            <Button Name="btnBack" Click="btnBack_Click">
-                <Image Source="/Images/back.png" Margin="25"/>
-            </Button>
-            <Button Name="btn0" Click="btn0_Click">0</Button>
-            <Button Name="btnComma" Click="btnComma_Click">.</Button>
-        </UniformGrid>
-        
-        <UniformGrid Columns="2" Rows="4"
-                     Grid.Column="2" Grid.Row="2">
-            <Button Name="btnMultiply" Click="btnMultiply_Click">*</Button>
-            <Button Name="btnDivide" Click="btnDivide_Click">/</Button>
-            <Button Name="btnAdd" Click="btnAdd_Click">+</Button>
-            <Button Name="btnSubtract" Click="btnSubtract_Click">-</Button>
-            <Border/>
-            <Border/>
-            <Border/>
-            <Button Name="btnEquals" Click="btnEquals_Click">=</Button>
-        </UniformGrid>
-
-        <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+        <Grid Grid.Column="1" Grid.Row="2" Margin="0 10 0 0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <Button Grid.Column="0" Grid.Row="0" Style="{StaticResource FunctionalKey}" Grid.ColumnSpan="2" Click="btnClear_Click">CE</Button>
+            <Button Grid.Column="2" Grid.Row="0" Style="{StaticResource FunctionalKey}" Click="btnBack_Click">C</Button>
+            <Button Grid.Column="3" Grid.Row="3" Style="{StaticResource FunctionalKey}" Click="btnAdd_Click">+</Button>
+            <Button Grid.Column="3" Grid.Row="2" Style="{StaticResource FunctionalKey}" Click="btnSubtract_Click">-</Button>
+            <Button Grid.Column="3" Grid.Row="1" Style="{StaticResource FunctionalKey}" Click="btnMultiply_Click">*</Button>
+            <Button Grid.Column="3" Grid.Row="0" Style="{StaticResource FunctionalKey}" Click="btnDivide_Click">/</Button>
+            <Button Grid.Column="3" Grid.Row="4" Style="{StaticResource FunctionalKey}" Click="btnEquals_Click">=</Button>
 
-            <StackPanel Orientation="Vertical" Grid.Column="0">
-                <TextBox Text="{Binding Operand}"
-                         Grid.Column="0"
-                         FontSize="32" TextAlignment="Justify"
-                         Margin="5">
-                    <TextBox.Effect>
-                        <DropShadowEffect ShadowDepth="4" Direction="330" Color="Black" Opacity="0.5" BlurRadius="4"/>
-                    </TextBox.Effect>
-                </TextBox>
+            <Button Grid.Column="0" Grid.Row="1" Style="{StaticResource NumericKey}" Click="btn1_Click">1</Button>
+            <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource NumericKey}" Click="btn2_Click">2</Button>
+            <Button Grid.Column="2" Grid.Row="1" Style="{StaticResource NumericKey}" Click="btn3_Click">3</Button>
+            <Button Grid.Column="0" Grid.Row="2" Style="{StaticResource NumericKey}" Click="btn4_Click">4</Button>
+            <Button Grid.Column="1" Grid.Row="2" Style="{StaticResource NumericKey}" Click="btn5_Click">5</Button>
+            <Button Grid.Column="2" Grid.Row="2" Style="{StaticResource NumericKey}" Click="btn6_Click">6</Button>
+            <Button Grid.Column="0" Grid.Row="3" Style="{StaticResource NumericKey}" Click="btn7_Click">7</Button>
+            <Button Grid.Column="1" Grid.Row="3" Style="{StaticResource NumericKey}" Click="btn8_Click">8</Button>
+            <Button Grid.Column="2" Grid.Row="3" Style="{StaticResource NumericKey}" Click="btn9_Click">9</Button>
+            <Button Grid.Column="0" Grid.Row="4" Style="{StaticResource NumericKey}" Grid.ColumnSpan="2" Click="btn0_Click">0</Button>
+            <Button Grid.Column="2" Grid.Row="4" Style="{StaticResource NumericKey}" Click="btnComma_Click">.</Button>
+        </Grid>
 
-                <ListView Grid.Column="0" Height="130" Margin="5"
-                          Background="Transparent" BorderThickness="0"
-                          ItemsSource="{Binding calcHistory, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
-                </ListView>
-            </StackPanel>
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.4*"/>
+                <RowDefinition Height="3"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="{Binding Operand}"
+                    Grid.Row="0"
+                    FontSize="80" TextAlignment="Right"
+                    Background="Transparent" Foreground="#3EB1BD"/>
 
-            <Button Grid.Column="1" VerticalAlignment="Top" Width="80" Margin="0 10 0 0"
-                    Name="btnClear" Click="btnClear_Click">
-                Clear
-            </Button>
+            <TextBlock Text="{Binding FullCalc}" Grid.Row="1"
+                      FontSize="18" Foreground="#3EB1BD"
+                      TextAlignment="Right"
+                      Margin="10"/>
+
+            <Border CornerRadius="1" Background="White" Grid.Row="2"/>
+
         </Grid>
 
     </Grid>
