@@ -67,7 +67,7 @@ namespace Calculator
                     cvm.AddOperandChar('9');
                     break;
                 case Key.Decimal:
-                     cvm.AddOperator(',');
+                     cvm.AddOperandChar(',');
                      break;
                 case Key.Multiply:
                      cvm.AddOperator('*');
