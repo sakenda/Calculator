@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-
-namespace Calculator.Model
+﻿namespace Calculator.Model
 {
     public class Mathematics
     {

@@ -1,53 +1,93 @@
 ﻿using Calculator.Model;
-using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Text;
 
 namespace Calculator.ViewModel
 {
     public class CalcViewModel : INotifyPropertyChanged
     {
-        private double _Output;
-        public double Output
+        public ObservableCollection<string> calcHistory { get; set; } = new ObservableCollection<string>();
+
+        private string _Operand = "";
+        public string Operand
         {
-            get => _Output;
+            get => _Operand;
             set
             {
-                _Output = value;
-                OnPropertyChanged(nameof(Output));
+                _Operand = value;
+                OnPropertyChanged(nameof(Operand));
             }
         }
 
         Mathematics mathematics = new Mathematics();
-        string operand = "";
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(propertyName, new PropertyChangedEventArgs(propertyName));
+        public void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-        public void AddOperandChar(string value)
+        public void ClearAll()
         {
-            operand += value;
-            Output = double.Parse(operand);
+            calcHistory.Clear();
+            Operand = "";
         }
 
-        public void Operate(char op)
+        public void RemoveOperandChar()
         {
-            if (op == '+')
+            Operand = Operand.Remove(Operand.Length - 1);
+        }
+
+        public void AddOperandChar(char value)
+        {
+            Operand += value;
+        }
+
+        public void AddOperator(char op)
+        {
+            calcHistory.Add(Operand);
+            Operand = "";
+            calcHistory.Add(op.ToString());
+        }
+
+        delegate double Calc(double a, double b);
+
+        public void GetResult()
+        {
+            if (!string.IsNullOrEmpty(Operand))
             {
-                Output = mathematics.Add(Output, double.Parse(operand));
+                calcHistory.Add(Operand);
+                Operand = "";
             }
-            else if (op == '-')
+
+            double result = 0.0;
+            bool nextToOperate = false;
+
+            Calc del = null;
+
+            foreach (var item in calcHistory)
             {
-                Output = mathematics.Subtract(Output, double.Parse(operand));
+                if (item == "+" || item == "-" || item == "*" || item == "/")
+                {
+                    CheckOperator(item);
+                    continue;
+                }
+                if (nextToOperate)
+                {
+                    if (del != null) result = del(result, double.Parse(item));
+                    nextToOperate = false;
+                    Operand = result.ToString();
+                    continue;
+                }
+
+                result = double.Parse(item);
+
             }
-            else if (op == '*')
+
+            void CheckOperator(string op)
             {
-                Output = mathematics.Multiply(Output, double.Parse(operand));
-            }
-            else if (op == '/')
-            {
-                Output = mathematics.Divide(Output, double.Parse(operand));
+                nextToOperate = true;
+                if (op == "+") del = mathematics.Add;
+                if (op == "-") del = mathematics.Subtract;
+                if (op == "*") del = mathematics.Multiply;
+                if (op == "/") del = mathematics.Divide;
             }
         }
     }
