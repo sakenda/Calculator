@@ -6,172 +6,196 @@
         xmlns:local="clr-namespace:Calculator"
         mc:Ignorable="d"
         Title="Rechner"
-        Height="600" Width="350"
-        MinHeight="600" MinWidth="350"
+        Height="600" Width="390"
+        MinHeight="600" MinWidth="390"
         WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
         FontFamily="Bahnschrift"
         Name="_Window"
         Background="#313131">
+    <Window.Clip>
+        <RectangleGeometry Rect="0,0,390,600" RadiusX="15" RadiusY="15"/>
+    </Window.Clip>
     <Window.Resources>
-        <Style TargetType="Button" x:Key="NumericKey">
-
-            <Style.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="10"/>
-                </Style>
-            </Style.Resources>
-
-            <Setter Property="FontWeight" Value="Normal"/>
-            <Setter Property="FontSize" Value="28"/>
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="Background" Value="Transparent"/>
-
-            <Setter Property="Foreground">
-                <Setter.Value>
-                    <LinearGradientBrush>
-                        <GradientStop Color="White" Offset="0"/>
-                        <GradientStop Color="Gray" Offset="1"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#328D95"/>
-                    <Setter Property="BorderBrush" Value="White"/>
-                    <Setter Property="BorderThickness" Value="1"/>
-                </Trigger>
-                <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="White"/>
-                </Trigger>
-            </Style.Triggers>
-
-        </Style>
-        
-        <Style TargetType="Button" x:Key="FunctionalKey">
             
-            <Style.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="10"/>
-                </Style>
-            </Style.Resources>
-            
-            <Setter Property="FontWeight" Value="Normal"/>
-            <Setter Property="FontSize" Value="28"/>
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="Background" Value="#4A4A4A"/>
-            
-            <Setter Property="Foreground">
-                <Setter.Value>
-                    <LinearGradientBrush>
-                        <GradientStop Color="White" Offset="0"/>
-                        <GradientStop Color="Gray" Offset="1"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
+            <Style TargetType="Button" x:Key="NumericKey">
 
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#328D95"/>
-                    <Setter Property="BorderBrush" Value="White"/>
-                    <Setter Property="BorderThickness" Value="1"/>
-                </Trigger>
-                <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="White"/>
-                </Trigger>
-            </Style.Triggers>
+                <Style.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Style.Resources>
 
-        </Style>
-    </Window.Resources>
-    
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="20"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="20"/>
-        </Grid.ColumnDefinitions>
+                <Setter Property="FontWeight" Value="Normal"/>
+                <Setter Property="FontSize" Value="28"/>
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="Background" Value="Transparent"/>
 
-        <Grid Grid.Column="1" Grid.Row="2" Margin="0 10 0 0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
+                <Setter Property="Foreground">
+                    <Setter.Value>
+                        <LinearGradientBrush>
+                            <GradientStop Color="White" Offset="0"/>
+                            <GradientStop Color="Gray" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="#328D95"/>
+                        <Setter Property="BorderBrush" Value="White"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                    </Trigger>
+                    <Trigger Property="IsPressed" Value="True">
+                        <Setter Property="Background" Value="White"/>
+                    </Trigger>
+                </Style.Triggers>
+
+            </Style>
+
+            <Style TargetType="Button" x:Key="FunctionalKey">
+
+                <Style.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Style.Resources>
+
+                <Setter Property="FontWeight" Value="Normal"/>
+                <Setter Property="FontSize" Value="28"/>
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="Background" Value="#4A4A4A"/>
+
+                <Setter Property="Foreground">
+                    <Setter.Value>
+                        <LinearGradientBrush>
+                            <GradientStop Color="White" Offset="0"/>
+                            <GradientStop Color="Gray" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="#328D95"/>
+                        <Setter Property="BorderBrush" Value="White"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                    </Trigger>
+                    <Trigger Property="IsPressed" Value="True">
+                        <Setter Property="Background" Value="White"/>
+                    </Trigger>
+                </Style.Triggers>
+
+            </Style>
+        </Window.Resources>
+
+        <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
-            
-            <Button Grid.Column="0" Grid.Row="0" Style="{StaticResource FunctionalKey}" Grid.ColumnSpan="2" Click="btnClear_Click">CE</Button>
-            <Button Grid.Column="2" Grid.Row="0" Style="{StaticResource FunctionalKey}" Click="btnBack_Click">C</Button>
-            <Button Grid.Column="3" Grid.Row="3" Style="{StaticResource FunctionalKey}" Click="btnAdd_Click">+</Button>
-            <Button Grid.Column="3" Grid.Row="2" Style="{StaticResource FunctionalKey}" Click="btnSubtract_Click">-</Button>
-            <Button Grid.Column="3" Grid.Row="1" Style="{StaticResource FunctionalKey}" Click="btnMultiply_Click">*</Button>
-            <Button Grid.Column="3" Grid.Row="0" Style="{StaticResource FunctionalKey}" Click="btnDivide_Click">/</Button>
-            <Button Grid.Column="3" Grid.Row="4" Style="{StaticResource FunctionalKey}" Click="btnEquals_Click">=</Button>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Grid.Row="1" Style="{StaticResource NumericKey}" Click="btn1_Click">1</Button>
-            <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource NumericKey}" Click="btn2_Click">2</Button>
-            <Button Grid.Column="2" Grid.Row="1" Style="{StaticResource NumericKey}" Click="btn3_Click">3</Button>
-            <Button Grid.Column="0" Grid.Row="2" Style="{StaticResource NumericKey}" Click="btn4_Click">4</Button>
-            <Button Grid.Column="1" Grid.Row="2" Style="{StaticResource NumericKey}" Click="btn5_Click">5</Button>
-            <Button Grid.Column="2" Grid.Row="2" Style="{StaticResource NumericKey}" Click="btn6_Click">6</Button>
-            <Button Grid.Column="0" Grid.Row="3" Style="{StaticResource NumericKey}" Click="btn7_Click">7</Button>
-            <Button Grid.Column="1" Grid.Row="3" Style="{StaticResource NumericKey}" Click="btn8_Click">8</Button>
-            <Button Grid.Column="2" Grid.Row="3" Style="{StaticResource NumericKey}" Click="btn9_Click">9</Button>
-            <Button Grid.Column="0" Grid.Row="4" Style="{StaticResource NumericKey}" Grid.ColumnSpan="2" Click="btn0_Click">0</Button>
-            <Button Grid.Column="2" Grid.Row="4" Style="{StaticResource NumericKey}" Click="btnComma_Click">.</Button>
+            <Grid Grid.Column="1" Grid.Row="2" Margin="0 10 5 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+            <Button Grid.Column="0" Grid.Row="0" Style="{StaticResource FunctionalKey}" Content="CE" Grid.ColumnSpan="2" Click="btnClear_Click"/>
+            <Button Grid.Column="2" Grid.Row="0" Style="{StaticResource FunctionalKey}" Content="C" Click="btnBack_Click"/>
+            <Button Grid.Column="3" Grid.Row="3" Style="{StaticResource FunctionalKey}" Content="+" Click="btnAdd_Click"/>
+            <Button Grid.Column="3" Grid.Row="2" Style="{StaticResource FunctionalKey}" Content="-" Click="btnSubtract_Click"/>
+            <Button Grid.Column="3" Grid.Row="1" Style="{StaticResource FunctionalKey}" Content="*" Click="btnMultiply_Click"/>
+            <Button Grid.Column="3" Grid.Row="0" Style="{StaticResource FunctionalKey}" Content="/" Click="btnDivide_Click"/>
+            <Button Grid.Column="3" Grid.Row="4" Style="{StaticResource FunctionalKey}" Content="=" Click="btnEquals_Click"/>
+
+            <Button Grid.Column="0" Grid.Row="1" Style="{StaticResource NumericKey}" Content="1" Click="btn1_Click"/>
+            <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource NumericKey}" Content="2" Click="btn2_Click"/>
+            <Button Grid.Column="2" Grid.Row="1" Style="{StaticResource NumericKey}" Content="3" Click="btn3_Click"/>
+            <Button Grid.Column="0" Grid.Row="2" Style="{StaticResource NumericKey}" Content="4" Click="btn4_Click"/>
+            <Button Grid.Column="1" Grid.Row="2" Style="{StaticResource NumericKey}" Content="5" Click="btn5_Click"/>
+            <Button Grid.Column="2" Grid.Row="2" Style="{StaticResource NumericKey}" Content="6" Click="btn6_Click"/>
+            <Button Grid.Column="0" Grid.Row="3" Style="{StaticResource NumericKey}" Content="7" Click="btn7_Click"/>
+            <Button Grid.Column="1" Grid.Row="3" Style="{StaticResource NumericKey}" Content="8" Click="btn8_Click"/>
+            <Button Grid.Column="2" Grid.Row="3" Style="{StaticResource NumericKey}" Content="9" Click="btn9_Click"/>
+            <Button Grid.Column="0" Grid.Row="4" Style="{StaticResource NumericKey}" Content="0" Grid.ColumnSpan="2" Click="btn0_Click"/>
+            <Button Grid.Column="2" Grid.Row="4" Style="{StaticResource NumericKey}" Content="." Click="btnComma_Click"/>
         </Grid>
 
-        <Grid Grid.Column="1" Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="0.4*"/>
-                <RowDefinition Height="3"/>
-            </Grid.RowDefinitions>
-            <TextBlock Text="{Binding Operand}"
-                    Grid.Row="0"
+            <Grid Grid.Column="1" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="0.4*"/>
+                    <RowDefinition Height="3"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="{Binding Operand}"
+                    Grid.Row="0" Margin="0 0 10 0"
                     FontSize="80" TextAlignment="Right"
                     Background="Transparent" Foreground="#3EB1BD"/>
 
-            <TextBlock Text="{Binding FullCalc}" Grid.Row="1"
+                <TextBlock Text="{Binding FullCalc}" Grid.Row="1"
                       FontSize="18" Foreground="#3EB1BD"
                       TextAlignment="Right"
                       Margin="10"/>
 
-            <Border CornerRadius="1" Background="White" Grid.Row="2"/>
+                <Border CornerRadius="1" Background="White" Grid.Row="2"/>
 
-        </Grid>
+            </Grid>
 
+        <Border Grid.Row="0" Grid.Column="2" Grid.RowSpan="4"
+                Width="40"  Background="#3EB1BD" HorizontalAlignment="Center"/>
+            
+        <Label Grid.Row="2" Grid.Column="2"
+               Content="r e c h n 3 R" Foreground="#313131"
+               HorizontalContentAlignment="Left"
+               FontSize="34">
+            <Label.LayoutTransform>
+                <RotateTransform Angle="-90"/>
+            </Label.LayoutTransform>
+        </Label>
+            
+        <Button Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Top"
+                Content="X" Height="40"
+                Background="Transparent" Foreground="#313131"
+                FontSize="28" FontWeight="Bold" BorderThickness="0"
+                Click="btnExit_Click"/>
+            
     </Grid>
 </Window>

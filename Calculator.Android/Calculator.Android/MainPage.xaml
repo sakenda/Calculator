@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Calculator.Android.MainPage"
+             Background="#353535">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button" BaseResourceKey="FunctionalKey">
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="Margin" Value="5"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="1" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Button Grid.Column="0" Grid.Row="0" Style="{StaticResource FunctionalKey}" Text="CE" Clicked="btnClear_Click" Grid.ColumnSpan="2"/>
+            <Button Grid.Column="2" Grid.Row="0" Style="{StaticResource FunctionalKey}" Text="C" Clicked="btnBack_Click"/>
+            <Button Grid.Column="3" Grid.Row="3" Style="{StaticResource FunctionalKey}" Text="+" Clicked="btnAdd_Click"/>
+            <Button Grid.Column="3" Grid.Row="2" Style="{StaticResource FunctionalKey}" Text="-" Clicked="btnSubtract_Click"/>
+            <Button Grid.Column="3" Grid.Row="1" Style="{StaticResource FunctionalKey}" Text="*" Clicked="btnMultiply_Click"/>
+            <Button Grid.Column="3" Grid.Row="0" Style="{StaticResource FunctionalKey}" Text="/" Clicked="btnDivide_Click"/>
+            <Button Grid.Column="3" Grid.Row="4" Style="{StaticResource FunctionalKey}" Text="=" Clicked="btnEquals_Click"/>
+
+            <Button Grid.Column="0" Grid.Row="1" Style="{StaticResource NumericKey}" Text="1" Clicked="btn1_Click"/>
+            <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource NumericKey}" Text="2" Clicked="btn2_Click"/>
+            <Button Grid.Column="2" Grid.Row="1" Style="{StaticResource NumericKey}" Text="3" Clicked="btn3_Click"/>
+            <Button Grid.Column="0" Grid.Row="2" Style="{StaticResource NumericKey}" Text="4" Clicked="btn4_Click"/>
+            <Button Grid.Column="1" Grid.Row="2" Style="{StaticResource NumericKey}" Text="5" Clicked="btn5_Click"/>
+            <Button Grid.Column="2" Grid.Row="2" Style="{StaticResource NumericKey}" Text="6" Clicked="btn6_Click"/>
+            <Button Grid.Column="0" Grid.Row="3" Style="{StaticResource NumericKey}" Text="7" Clicked="btn7_Click"/>
+            <Button Grid.Column="1" Grid.Row="3" Style="{StaticResource NumericKey}" Text="8" Clicked="btn8_Click"/>
+            <Button Grid.Column="2" Grid.Row="3" Style="{StaticResource NumericKey}" Text="9" Clicked="btn9_Click"/>
+            <Button Grid.Column="0" Grid.Row="4" Style="{StaticResource NumericKey}" Text="0" Clicked="btn0_Click" Grid.ColumnSpan="2"/>
+            <Button Grid.Column="2" Grid.Row="4" Style="{StaticResource NumericKey}" Text="." Clicked="btnComma_Click"/>
+
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.4*"/>
+                <RowDefinition Height="3"/>
+            </Grid.RowDefinitions>
+
+            <Label Text="{Binding Operand}"
+                    Grid.Row="0"
+                    FontSize="80" HorizontalTextAlignment="End"
+                    BackgroundColor="Transparent" TextColor="#3EB1BD"/>
+
+            <Label Text="{Binding FullCalc}" Grid.Row="1"
+                      FontSize="18" TextColor="#3EB1BD"
+                      HorizontalTextAlignment="End"
+                      Margin="10"/>
+
+            <Line Background="White" Grid.Row="2"/>
+
+        </Grid>
+
+
+
+    </Grid>
+</ContentPage>

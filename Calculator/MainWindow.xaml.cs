@@ -1,4 +1,5 @@
 ﻿using Calculator.ViewModel;
+using System;
 using System.Windows;
 using System.Windows.Input;
 
@@ -12,9 +13,12 @@ namespace Calculator
             InitializeComponent();
             DataContext = cvm;
 
+            _Window.MouseDown += _Window_MouseDown;
             _Window.KeyDown += _Window_KeyDown;
 
         }
+
+        private void _Window_MouseDown(object sender, MouseButtonEventArgs e) => DragMove();
 
         private void _Window_KeyDown(object sender, KeyEventArgs e)
         {
@@ -107,5 +111,7 @@ namespace Calculator
         private void btnBack_Click(object sender, RoutedEventArgs e) => cvm.RemoveOperandChar();
         private void btnEquals_Click(object sender, RoutedEventArgs e) => cvm.GetResult();
         private void btnClear_Click(object sender, RoutedEventArgs e) => cvm.ClearAll();
+
+        private void btnExit_Click(object sender, RoutedEventArgs e) => Environment.Exit(0);
     }
 }

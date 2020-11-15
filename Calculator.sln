@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalculatorWindowsApp", "Calculator\CalculatorWindowsApp.csproj", "{7722ADE1-B797-4BBB-B00A-FE92BE940709}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculator.Windows", "Calculator\Calculator.Windows.csproj", "{7722ADE1-B797-4BBB-B00A-FE92BE940709}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalcLogic", "CalcLogic\CalcLogic.csproj", "{25F37444-F2C5-488E-B9F4-CB34852C6A26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculator.Logic", "CalcLogic\Calculator.Logic.csproj", "{25F37444-F2C5-488E-B9F4-CB34852C6A26}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
