@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calculator"
         mc:Ignorable="d"
-        Title="MainWindow"
+        Title="Rechner"
         Height="600" Width="350"
         MinHeight="600" MinWidth="350"
         WindowStartupLocation="CenterScreen"
