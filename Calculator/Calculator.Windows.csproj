@@ -5,6 +5,8 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <StartupObject>Calculator.App</StartupObject>
+    <Authors>Michael Barth</Authors>
+    <Product>rechn3R</Product>
   </PropertyGroup>
 
   <ItemGroup>
